@@ -1,0 +1,4 @@
+include ':testdemo1', ':testdagger2', ':databidningdemo'
+//include ':app'
+
+

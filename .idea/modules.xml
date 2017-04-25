@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataBindingDemo1.iml" filepath="$PROJECT_DIR$/DataBindingDemo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/databidningdemo/databidningdemo.iml" filepath="$PROJECT_DIR$/databidningdemo/databidningdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testdagger2/testdagger2.iml" filepath="$PROJECT_DIR$/testdagger2/testdagger2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testdemo1/testdemo1.iml" filepath="$PROJECT_DIR$/testdemo1/testdemo1.iml" />
+    </modules>
+  </component>
+</project>

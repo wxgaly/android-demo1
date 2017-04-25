@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DataBindingDemo1</string>
+    <string name="et_username">请输入用户名:</string>
+    <string name="et_password">请输入密码:</string>
+    <string name="list_add_item">add</string>
+    <string name="list_remove_item">remove</string>
+    <string name="welcome">Welcome </string>
+</resources>

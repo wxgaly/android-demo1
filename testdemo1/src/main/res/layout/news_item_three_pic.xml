@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news_item_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/main_item_margin"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/main_item_margin">
+
+        <TextView
+            android:id="@+id/news_item_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/news_item_title_text_size"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/news_item_iv_thumbnail_pic_s"
+                style="@style/NewsImageViewStyle"
+                android:layout_marginRight="@dimen/news_item_imageview_maginright"
+                />
+
+            <ImageView
+                android:id="@+id/news_item_iv_thumbnail_pic_s02"
+                style="@style/NewsImageViewStyle"
+                android:layout_marginRight="@dimen/news_item_imageview_maginright"
+                />
+
+            <ImageView
+                android:id="@+id/news_item_iv_thumbnail_pic_s03"
+                style="@style/NewsImageViewStyle"
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/news_item_tv_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/light_slate_gray"
+                android:textSize="@dimen/news_item_text_size"
+                />
+
+            <TextView
+                android:id="@+id/news_item_tv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/news_item_tv_date"
+                android:text="@string/app_name"
+                android:textColor="@color/light_slate_gray"
+                android:textSize="@dimen/news_item_text_size"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
