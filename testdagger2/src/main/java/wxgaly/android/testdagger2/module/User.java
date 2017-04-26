@@ -1,4 +1,4 @@
-package wxgaly.android.testdagger2;
+package wxgaly.android.testdagger2.module;
 
 import javax.inject.Inject;
 

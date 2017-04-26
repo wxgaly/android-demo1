@@ -21,7 +21,9 @@ public class ActivityMoudle {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(String baseUrl) {
+    Retrofit provideRetrofit() {
+
+        String BAIDU_URL = "http://www.baidu.com/";
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -35,7 +37,7 @@ public class ActivityMoudle {
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(baseUrl)
+                .baseUrl(BAIDU_URL)
                 .client(okHttpClient)
                 .build();
 

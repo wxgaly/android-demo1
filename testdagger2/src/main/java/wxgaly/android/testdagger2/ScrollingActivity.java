@@ -9,14 +9,32 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.io.IOException;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
+import wxgaly.android.testdagger2.api.ApiService;
+import wxgaly.android.testdagger2.module.DaggerActivityComponent;
+import wxgaly.android.testdagger2.module.User;
 
 public class ScrollingActivity extends AppCompatActivity {
 
     private static final String TAG = "wxg";
+    private static final String BAIDU_URL = "http://www.baidu.com";
+
+    private TextView textview;
+
     @Inject
     User user;
 
@@ -38,6 +56,44 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void testRetrofit() {
+        ApiService.GetResponse response = retrofit.create(ApiService.GetResponse.class);
+        Flowable<ResponseBody> flowable = response.getHttpResponse(BAIDU_URL);
+
+        //使用rxjava的方式回调
+        flowable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                    String string = responseBody.string();
+                    Log.d(TAG, "onResponse() called with: string = [" + string + "]");
+                    textview.setText(string);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e(TAG, "onFailure: " + throwable.getMessage(), throwable);
+                    }
+                });
+
+        //通常方式调用retrofit异步回调
+//        call.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+//                try {
+//                    String string = response.body().string();
+//                    Log.d(TAG, "onResponse() called with: string = [" + string + "]");
+//                    textview.setText(string);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+//                Log.e(TAG, "onFailure: " + throwable.getMessage(), throwable);
+//            }
+//        });
 
     }
 
@@ -59,6 +115,8 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        textview = (TextView) findViewById(R.id.textview);
     }
 
     @Override
