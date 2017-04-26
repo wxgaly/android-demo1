@@ -12,11 +12,16 @@ import android.view.MenuItem;
 
 import javax.inject.Inject;
 
+import retrofit2.Retrofit;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     private static final String TAG = "wxg";
     @Inject
     User user;
+
+    @Inject
+    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,15 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private void initData() {
         DaggerActivityComponent.builder().build().inject(this);
+        testUser();
+        testRetrofit();
+    }
+
+    private void testRetrofit() {
+
+    }
+
+    private void testUser() {
         user.setName("测试Demo");
 
         Log.d(TAG, "initData() called--- " + user.toString());
