@@ -62,19 +62,14 @@ public class ScrollingActivity extends AppCompatActivity {
         //使用rxjava的方式回调
         flowable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
-                    @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                    String string = responseBody.string();
-                    Log.d(TAG, "onResponse() called with: string = [" + string + "]");
-                    textview.setText(string);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e(TAG, "onFailure: " + throwable.getMessage(), throwable);
-                    }
-                });
+                .subscribe((responseBody) -> {
+                            String string = responseBody.string();
+                            Log.d(TAG, "onResponse() called with: string = [" + string + "]");
+                            textview.setText(string);
+                        },
+                        (throwable) -> {
+                            Log.e(TAG, "onFailure: " + throwable.getMessage(), throwable);
+                        });
 
         //通常方式调用retrofit异步回调
 //        call.enqueue(new Callback<ResponseBody>() {
