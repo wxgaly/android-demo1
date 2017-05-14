@@ -1,5 +1,8 @@
 package wxgaly.android.testdagger2.module;
 
+import android.app.Application;
+import android.content.Context;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -13,11 +16,23 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by wxgaly on 2017/4/26.
+ * Created by wxgaly on 2017/5/14.
  */
 
 @Module
-public class ActivityMoudle {
+public class ApplicationModule {
+
+    private final Application application;
+
+    public ApplicationModule(Application application) {
+        this.application = application;
+    }
+
+    @Provides
+    @Singleton
+    Context provideApplicationContext() {
+        return this.application;
+    }
 
     @Provides
     @Singleton
@@ -43,5 +58,6 @@ public class ActivityMoudle {
 
         return retrofit;
     }
+
 
 }

@@ -6,26 +6,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-
-import java.io.IOException;
 
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import wxgaly.android.testdagger2.api.ApiService;
-import wxgaly.android.testdagger2.module.DaggerActivityComponent;
+import wxgaly.android.testdagger2.module.ApplicationModule;
+import wxgaly.android.testdagger2.module.DaggerApplicationComponent;
 import wxgaly.android.testdagger2.module.User;
 
 public class ScrollingActivity extends AppCompatActivity {
@@ -50,7 +45,11 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        DaggerActivityComponent.builder().build().inject(this);
+        DaggerApplicationComponent
+                .builder()
+                .applicationModule(new ApplicationModule(getApplication()))
+                .build()
+                .inject(this);
         testUser();
         testRetrofit();
     }

@@ -1,19 +1,17 @@
 package wxgaly.android.testdagger2.module;
 
-import javax.inject.Singleton;
+import android.app.Activity;
 
 import dagger.Component;
-import wxgaly.android.testdagger2.ScrollingActivity;
-import wxgaly.android.testdagger2.module.ActivityMoudle;
 
 /**
  * Created by wxgaly on 2017/4/26.
  */
 
-@Singleton
-@Component(modules = ActivityMoudle.class)
+@PerActivity
+@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
 
-    void inject(ScrollingActivity activity);
+    Activity activity();
 
 }
