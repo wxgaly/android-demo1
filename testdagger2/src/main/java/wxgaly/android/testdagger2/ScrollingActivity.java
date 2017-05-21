@@ -72,6 +72,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 .map(responseBody -> {
                     return responseBody.string(); //当只有一个参数时,可省略圆括号；
                 })
+                .flatMap(string -> Flowable.just(string))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((String string) -> {//需要声明类型时，需要加圆括号指定参数类型；
                             Log.d(TAG, "onResponse() called with: string = [" + string + "]");
